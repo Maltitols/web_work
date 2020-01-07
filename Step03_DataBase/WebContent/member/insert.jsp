@@ -20,16 +20,27 @@
 <head>
 <meta charset="UTF-8">
 <title>/member/insert.jsp</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
+<style>
+	.container{
+		padding-top:100px;
+	}
+</style>
 </head>
 <body>
-
-<%if(isSuccess){ %>
-	<p> <strong><%=name %></strong> 의 정보를 저장했습니다.</p>
-	<a href="list.jsp">확인</a>
-<%}else{ %>
-	<p>저장 실패 했습니다.</p>
-	<a href="insertform.jsp">다시 시도</a>
-<%} %>
+<div class="container">
+	<%if(isSuccess){ %>
+		<p class="alert alert-success"> 
+			<strong><%=name %></strong> 의 정보를 저장했습니다.
+			<a href="list.jsp">확인</a>
+		</p>
+	<%}else{ %>
+		<p class="alert alert-danger">
+			저장 실패 했습니다.
+			<a class="alert-ling" href="insertform.jsp">다시 시도</a>
+		</p>
+	<%} %>
+</div>
 </body>
 </html> 
 </html>

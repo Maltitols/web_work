@@ -6,8 +6,24 @@
 <meta charset="UTF-8">
 <title>index.jsp</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
+<style>
+	/* navbar가 상단에 고정되면서 공간이 남아 겹쳐진다 */
+	body{
+		padding-top: 50px;
+	}
+</style>
 </head>
 <body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<a class="navbar-brand" href="${pageContext.request.contextPath }/index.jsp">Acorn</a>
+		<ul class="nav navbar-nav">
+			<li><a href="${pageContext.request.contextPath }/member/list.jsp">회원관리</a></li>
+			<li><a href="">게임</a></li>
+			<li><a href="">쇼핑</a></li>
+		</ul>
+	</div>
+</div>
 <div class="container">
 	<h1>인덱스 페이지 입니다.</h1>
 	<p>context path : ${pageContext.request.contextPath }</p>
@@ -17,8 +33,3 @@
 </div>
 </body>
 </html>
-
-
-
-
-
