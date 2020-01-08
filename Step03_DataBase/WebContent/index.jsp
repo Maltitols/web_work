@@ -6,12 +6,8 @@
 <meta charset="UTF-8">
 <title>index.jsp</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
-<style>
-	/* navbar가 상단에 고정되면서 공간이 남아 겹쳐진다 */
-	body{
-		padding-top: 50px;
-	}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/step03_custom.css" />
+
 <!-- jquery+bootstrap javascript 로딩 -->
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
@@ -46,5 +42,14 @@
 		<li><a href="todo/list.jsp">할 일 목록(todo table)</a></li>
 	</ul>
 </div>
+<%-- 
+	[ /include/footer.jsp 를 포함 시키기 ]
+	- page="포함 시킬 jsp  페이지의 상대경로" 
+	- 절대 경로는 동작하지 않는다.
+	- jsp 페이지만 가능하다 
+	- 포함 시킨 jsp 페이지와 포함된 jsp  페이지가 공동 응답하는 구조로 
+	    클라이언트에게 응답하는 원리이다.
+--%>
+<jsp:include page="include/footer.jsp"></jsp:include>
 </body>
 </html>

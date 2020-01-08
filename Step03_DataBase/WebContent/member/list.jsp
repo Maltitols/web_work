@@ -15,12 +15,8 @@
 <meta charset="UTF-8">
 <title>/member/list.jsp</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
-<style>
-	/* navbar가 상단에 고정되면서 공간이 남아 겹쳐진다 */
-	body{
-		padding-top: 50px;
-	}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/step03_custom.css" />
+
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -63,5 +59,7 @@
 	</table>
 	<a href="insertform.jsp">회원추가 하러가기</a>
 </div>
+<%-- /include/footer.jsp --%>
+<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
 </html>
