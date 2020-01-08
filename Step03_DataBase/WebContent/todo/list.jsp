@@ -54,11 +54,23 @@
 				<td><%=tmp.getContent() %></td>
 				<td><%=tmp.getRegdate() %></td>
 				<td><a href="updateform.jsp?num=<%=tmp.getNum() %>">수정</a></td>
-				<td><a href="delete.jsp?num=<%=tmp.getNum() %>">삭제</a></td>
+				<td><a href="javascript:deleteConfirm(<%=tmp.getNum()%>)">삭제</a></td>
 			</tr>
 		<%} %>
 		</tbody>
 	</table>
-	<a href="insertform.jsp">할 일 추가 하러가기</a>
+	<a href="${pageContext.request.contextPath }/todo/insertform.jsp">할 일 추가 하러가기</a>
+</div>
+<script>
+	function deleteConfirm(num){
+		var isDelete=confirm(num+" 번 todo 를 삭제 하시겠습니까?");
+		if(isDelete){
+			location.href="delete.jsp?num="+num;
+		}
+	}
+</script>
 </body>
 </html>
+
+
+
