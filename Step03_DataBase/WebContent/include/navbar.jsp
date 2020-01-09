@@ -23,7 +23,7 @@
 			<ul class="nav navbar-nav">
 				<li <%if(category.equals("member")){ %>class="active"<%}%>><a href="${pageContext.request.contextPath }/member/list.jsp">회원관리</a></li>
 				<li <%if(category.equals("todo")){ %>class="active"<%}%>><a href="${pageContext.request.contextPath }/todo/list.jsp">할 일 목록</a></li>
-				<li <%if(category.equals("shopping")){ %>class="active"<%}%>><a href="#">쇼핑</a></li>
+				<li <%if(category.equals("freeboard")){ %>class="active"<%}%>><a href="${pageContext.request.contextPath }/board/list.jsp">게시판</a></li>
 			</ul>
 		</div>
 	</div>
