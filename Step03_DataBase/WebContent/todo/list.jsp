@@ -14,6 +14,9 @@
 <title>/todo/list.jsp</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/step03_custom.css" />
+<!-- jquery+bootstrap javascript 로딩 -->
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
 </head>
 <body>
 <%-- 피 include 되는 jsp 페이지에 파라미터를 전달할수 있음 --%>
@@ -42,8 +45,19 @@
 				<td><%=tmp.getNum() %></td>
 				<td><%=tmp.getContent() %></td>
 				<td><%=tmp.getRegdate() %></td>
-				<td><a href="updateform.jsp?num=<%=tmp.getNum() %>">수정</a></td>
-				<td><a href="javascript:deleteConfirm(<%=tmp.getNum()%>)">삭제</a></td>
+				<td>
+					<a href="updateform.jsp?num=<%=tmp.getNum() %>">
+						<!-- 스크린리더기를 위한 숨겨진 text 제공 -->
+						<span class="sr-only">수정하러가기</span>
+						<span class="glyphicon glyphicon-edit"></span>
+					</a>
+				</td>
+				<td>
+					<a href="delete.jsp?num=<%=tmp.getNum() %>">
+						<span class="sr-only">삭제하기</span>
+						<span class="glyphicon glyphicon-trash"></span>
+					</a>
+				</td>
 			</tr>
 		<%} %>
 		</tbody>
