@@ -17,6 +17,11 @@
 	<jsp:param value="freeboard" name="category"/>
 </jsp:include>
 <div class="container">
+	<!-- 현재 페이지의 위치를 좀 더 자세히 알려주는 breadcrumb -->
+	<ol class="breadcrumb">
+		<li><a href="list.jsp">목록</a></li>
+		<li>새글 추가 폼</li>
+	</ol>
 	<h1>새글 추가 폼 입니다.</h1>
 	<form action="insert.jsp" method="post">
 		<div>
@@ -43,7 +48,3 @@
 <jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
 </html>
-
-
-
-
