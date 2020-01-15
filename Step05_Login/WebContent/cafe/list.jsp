@@ -23,14 +23,17 @@
 		color: #f00;
 		font-weight: bold;
 	}
+	.page-display ul li.muted a{
+		color: #cecece;
+	}
 </style>
 </head>
 <body>
 <%
 	//한 페이지에 나타낼 row 의 갯수
-	final int PAGE_ROW_COUNT=5;
+	final int PAGE_ROW_COUNT=2;
 	//하단 디스플레이 페이지 갯수
-	final int PAGE_DISPLAY_COUNT=5;
+	final int PAGE_DISPLAY_COUNT=3;
 	
 	//보여줄 페이지의 번호
 	int pageNum=1;
@@ -86,7 +89,7 @@
 			<tr>
 				<td><%=tmp.getNum() %></td>
 				<td><%=tmp.getWriter() %></td>
-				<td><%=tmp.getTitle() %></td>
+				<td><a href="detail.jsp?num=<%=tmp.getNum()%>"><%=tmp.getTitle() %></a></td>
 				<td><%=tmp.getViewCount() %></td>
 				<td><%=tmp.getRegdate() %></td>
 			</tr>
@@ -95,6 +98,15 @@
 	</table>
 	<div class="page-display">
 		<ul>
+			<%if(startPageNum != 1){%>
+				<li>
+					<a href="list.jsp?pageNum=<%=startPageNum-1%>">&laquo;</a>
+				</li>
+			<%}else{ %>
+				<li class="muted">
+					<a href="javascript:">&laquo;</a>
+				</li>
+			<%} %>
 			<%for(int i=startPageNum; i<=endPageNum; i++){ %>
 				<%if(i == pageNum){ %>
 					<li class="active">
@@ -105,6 +117,15 @@
 						<a href="list.jsp?pageNum=<%=i %>"><%=i %></a>
 					</li>
 				<%} %>
+			<%} %>
+			<%if(endPageNum < totalPageCount){ %>
+				<li>
+					<a href="list.jsp?pageNum=<%=endPageNum+1%>">&raquo;</a>
+				</li>
+			<%}else{ %>
+				<li class="muted">
+					<a href="javascript:">&raquo;</a>
+				</li>
 			<%} %>
 		</ul>
 	</div>
