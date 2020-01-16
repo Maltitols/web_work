@@ -1,5 +1,5 @@
-<%@page import="test.cafe.dto.CafeDto"%>
 <%@page import="test.cafe.dao.CafeDao"%>
+<%@page import="test.cafe.dto.CafeDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -8,32 +8,14 @@
 <head>
 <meta charset="UTF-8">
 <title>/cafe/list.jsp</title>
-<style>
-	.page-display ul li{
-		float: left;
-		list-style-type: none;
-		margin-right: 10px;
-	}
-	.page-display ul li a{
-		text-decoration: none;
-		color: #000;
-	}
-	.page-display ul li.active a{
-		text-decoration: underline;
-		color: #f00;
-		font-weight: bold;
-	}
-	.page-display ul li.muted a{
-		color: #cecece;
-	}
-</style>
+<jsp:include page="../include/resource.jsp"></jsp:include>
 </head>
 <body>
 <%
 	//한 페이지에 나타낼 row 의 갯수
-	final int PAGE_ROW_COUNT=2;
+	final int PAGE_ROW_COUNT=5;
 	//하단 디스플레이 페이지 갯수
-	final int PAGE_DISPLAY_COUNT=3;
+	final int PAGE_DISPLAY_COUNT=5;
 	
 	//보여줄 페이지의 번호
 	int pageNum=1;
@@ -71,10 +53,22 @@
 	List<CafeDto> list=CafeDao.getInstance().getList(dto);
 	//2. 글 목록을 응답한다.
 %>
+<jsp:include page="../include/navbar.jsp">
+	<jsp:param value="cafe" name="category"/>
+</jsp:include>
 <div class="container">
-	<a href="private/insertform.jsp">새글 작성</a>
+	<ol class="breadcrumb">
+		<li><a href="list.jsp">목록</a></li>
+	</ol>
 	<h1>글 목록 입니다.</h1>
-	<table>
+	<table class="table table-striped table-condensed">
+		<colgroup>
+			<col class="col-xs-1"/>
+			<col class="col-xs-2"/>
+			<col class="col-xs-5"/>
+			<col class="col-xs-1"/>
+			<col class="col-xs-3"/>
+		</colgroup>
 		<thead>
 			<tr>
 				<th>글번호</th>
@@ -89,21 +83,28 @@
 			<tr>
 				<td><%=tmp.getNum() %></td>
 				<td><%=tmp.getWriter() %></td>
-				<td><a href="detail.jsp?num=<%=tmp.getNum()%>"><%=tmp.getTitle() %></a></td>
+				<td>
+					<a href="detail.jsp?num=<%=tmp.getNum() %>">
+						<%=tmp.getTitle() %>
+					</a>
+				</td>
 				<td><%=tmp.getViewCount() %></td>
 				<td><%=tmp.getRegdate() %></td>
 			</tr>
 		<%} %>
 		</tbody>
 	</table>
+	
+	<a href="private/insertform.jsp">새글 작성</a>
+	
 	<div class="page-display">
-		<ul>
-			<%if(startPageNum != 1){%>
+		<ul class="pagination pagination-sm">
+			<%if(startPageNum != 1){ %>
 				<li>
-					<a href="list.jsp?pageNum=<%=startPageNum-1%>">&laquo;</a>
+					<a href="list.jsp?pageNum=<%=startPageNum-1 %>">&laquo;</a>
 				</li>
 			<%}else{ %>
-				<li class="muted">
+				<li class="disabled">
 					<a href="javascript:">&laquo;</a>
 				</li>
 			<%} %>
@@ -120,10 +121,10 @@
 			<%} %>
 			<%if(endPageNum < totalPageCount){ %>
 				<li>
-					<a href="list.jsp?pageNum=<%=endPageNum+1%>">&raquo;</a>
+					<a href="list.jsp?pageNum=<%=endPageNum+1 %>">&raquo;</a>
 				</li>
 			<%}else{ %>
-				<li class="muted">
+				<li class="disabled">
 					<a href="javascript:">&raquo;</a>
 				</li>
 			<%} %>
@@ -132,3 +133,8 @@
 </div>
 </body>
 </html>
+
+
+
+
+
