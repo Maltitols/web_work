@@ -16,7 +16,7 @@ public class FortuenServlet extends HttpServlet{
 		//응답을 jsp 페이지 혹은 다른 서블릿으로 위임할 수 있다
 		
 		//1. 응답을 위임할 경로(context path는 넣지않는다)
-		String path="/test1/person.jsp";
+		String path="/test2/person.jsp";
 		//2. RequestDispatcher 객체의 참조값
 		RequestDispatcher rd=req.getRequestDispatcher(path);
 		//3. 포워드 이동해서 응답

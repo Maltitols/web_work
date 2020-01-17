@@ -16,7 +16,7 @@
 </head>
 <body>
 	<p> request의 myName : <string><%=myName %></string></p>
-	<p> sesstion의 yourName : <string><%=yourName %></string></p>
+	<p> session의 yourName : <string><%=yourName %></string></p>
 	<p> application의 ourName : <string><%=ourName %></string></p>
 	
 	<p><a href="reset.jsp">삭제하러 가기</a></p>
