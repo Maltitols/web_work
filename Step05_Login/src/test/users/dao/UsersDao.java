@@ -16,16 +16,80 @@ public class UsersDao {
 		}
 		return dao;
 	}
-	//비밀번호 수정 업데이트 메소드
-	public boolean pwdUpdate(UsersDto dto) {
+	//프로파일 이미지 정보를 업데이트 하는 메소드
+	public boolean updateProfile(UsersDto dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int flag = 0;
 		try {
 			conn = new DbcpBean().getConn();
-			String sql = "update users"
-					+ "	set pwd=?"
-					+ " where id=?";
+			String sql = "UPDATE users"
+					+ " SET profile=?"
+					+ " WHERE id=?";
+			pstmt = conn.prepareStatement(sql);
+			// ? 에 값 바인딩 하기
+			pstmt.setString(1, dto.getProfile());
+			pstmt.setString(2, dto.getId());
+			flag = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		if (flag > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	//회원가입 정보를 삭제하는 메소드
+	public boolean delete(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+		try {
+			conn = new DbcpBean().getConn();
+			String sql = "DELETE FROM users"
+					+ " WHERE id=?";
+			pstmt = conn.prepareStatement(sql);
+			// ? 에 값 바인딩 하기
+			pstmt.setString(1, id);
+			flag = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		if (flag > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	//비밀번호를 수정반영하는 메소드
+	public boolean updatePwd(UsersDto dto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+		try {
+			conn = new DbcpBean().getConn();
+			String sql = "UPDATE users"
+					+ " SET pwd=?"
+					+ " WHERE id=?";
 			pstmt = conn.prepareStatement(sql);
 			// ? 에 값 바인딩 하기
 			pstmt.setString(1, dto.getPwd());
@@ -49,16 +113,16 @@ public class UsersDao {
 		}
 	}
 	
-	//인자로 전달되는 회원정보를(이메일) DB에 수정반영하는 메소드
+	//인자로 전달되는 회원정보를(이메일) DB 에 수정반영하는 메소드
 	public boolean update(UsersDto dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int flag = 0;
 		try {
 			conn = new DbcpBean().getConn();
-			String sql = "update users"
-					+ " set email=?"
-					+ " where id=?";
+			String sql = "UPDATE users"
+					+ " SET email=?"
+					+ " WHERE id=?";
 			pstmt = conn.prepareStatement(sql);
 			// ? 에 값 바인딩 하기
 			pstmt.setString(1, dto.getEmail());
@@ -90,7 +154,7 @@ public class UsersDao {
 		ResultSet rs = null;
 		try {
 			conn = new DbcpBean().getConn();
-			String sql = "SELECT pwd, email, regdate"
+			String sql = "SELECT pwd, email, regdate, profile"
 					+ " FROM users"
 					+ " WHERE id=?";
 			pstmt = conn.prepareStatement(sql);
@@ -103,6 +167,7 @@ public class UsersDao {
 				dto.setPwd(rs.getString("pwd"));
 				dto.setEmail(rs.getString("email"));
 				dto.setRegdate(rs.getString("regdate"));
+				dto.setProfile(rs.getString("profile"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

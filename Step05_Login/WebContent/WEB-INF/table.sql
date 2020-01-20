@@ -28,3 +28,5 @@ regdate date
 );
 
 create sequence board_file_seq;
+
+alter table users add(profile varchar2(50));
