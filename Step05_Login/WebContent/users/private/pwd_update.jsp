@@ -16,7 +16,7 @@
 	if(isValid){	//유효한 정보라면
 		//새 비밀번호를 수정 반영한다
 		dto.setPwd(newPwd);
-		UsersDao.getInstance().pwdUpdate(dto);
+		UsersDao.getInstance().updatePwd(dto);
 	}
 %>
 <!DOCTYPE html>
