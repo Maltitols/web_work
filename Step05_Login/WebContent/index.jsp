@@ -29,6 +29,8 @@
 		<li><a href="popup/main.jsp">팝업 테스트2</a></li>
 		<li><a href="el01">EL테스트</a></li>
 		<li><a href="el02">EL테스트2</a></li>
+		<li><a href="el03">EL테스트3</a></li>
+		<li><a href="el/test04.jsp">EL테스트4</a></li>
 	</ul>
 </div>
 </body>
